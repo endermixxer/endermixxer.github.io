@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandit Terminal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="terminal-container">
+    <div id="terminal-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="title">Fake Terminal</span>
+    </div>
+
+    <div id="terminal-output"></div>
+
+    <div id="terminal-input-line">
+        <span id="prompt">sshcmd@bandit:~$</span>
+        <input id="terminal-input" type="text" autofocus autocomplete="off">
+    </div>
+</div>
+
+<script src="terminal.js"></script>
+</body>
+</html>

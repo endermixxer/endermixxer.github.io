@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandit Level 4 Writeup</title>
+    <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
+</head>
+<body>
+    <div id="writeup-container">
+        <h1>Bandit Level 4</h1>
+
+        <pre>
+Goal: The password for the next level is stored in the only human readable file in the inhere directory
+
+Steps:
+1. Open terminal and run:
+   ssh bandit4@bandit.labs.overthewire.org -p 2220
+2. Enter the password: xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq
+3. Navigate to the inhere file
+4. after reading files we have ./-file-* 
+5. Return to Home direcotry
+6. file inhere/-file0* 
+7. Find ASCII file under -file07
+
+Password: 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG
+
+Tips:
+- Use 'ls' to list files
+- Use 'cat filename' to read files
+- * means the same file with different numbers
+        </pre>
+
+        <p><a href="../bandit_writeup.html">Back to Terminal</a></p>
+    </div>
+</body>
+</html>

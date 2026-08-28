@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandit Level 0 Writeup</title>
+    <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
+</head>
+<body>
+    <div id="writeup-container">
+        <h1>Bandit Level 0</h1>
+
+        <pre>
+Goal: The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+Steps:
+1. Open terminal and run:
+   ssh bandit11@bandit.labs.overthewire.org -p 2220
+2. Enter the password: pYfOY6HwUsDj5rL9UvyhU7MCmv8vN5Ro
+3. cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+
+Password: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
+Tips:
+- Use 'ls' to list files
+- Use 'cat filename' to read files
+        </pre>
+
+        <p><a href="../bandit_writeup.html">Back to Terminal</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandit Level 0 Writeup</title>
+    <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
+</head>
+<body>
+    <div id="writeup-container">
+        <h1>Bandit Level 0</h1>
+
+        <pre>
+Goal: The password for the next level is stored in a file called readme located in the home directory. Use this password to log into bandit1 using SSH. Whenever you find a password for a level, use SSH (on port 2220) to log into that level and continue the game.
+
+Steps:
+1. Open terminal and run:
+   ssh bandit0@bandit.labs.overthewire.org -p 2220
+2. Enter the password: bandit0
+3. Navigate the home directory
+4. Find and read the file "readme" for the solution
+
+Commands:
+- Use 'ls' to list files
+- Use 'cat filename' to read files
+- Use 'exit' to end the ssh connection
+
+Password:
+6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR 
+        </pre>
+
+        <p><a href="../bandit_writeup.html">Back to Terminal</a></p>
+    </div>
+</body>
+</html>

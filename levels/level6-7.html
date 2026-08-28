@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandit Level 6 Writeup</title>
+    <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
+</head>
+<body>
+    <div id="writeup-container">
+        <h1>Bandit Level 6</h1>
+
+        <pre>
+Goal: The password for the next level is stored somewhere on the server and has all of the following properties:
+
+owned by user bandit7
+owned by group bandit6
+33 bytes in size
+
+Steps:
+1. Open terminal and run:
+   ssh bandit6@bandit.labs.overthewire.org -p 2220
+2. Enter the password: pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+3. cd ..
+4. cd ..
+5. find . -size 33c -user bandit7 -group bandit6 | grep "bandit7"
+6. cat into the red highlighted file
+7. cat ./var/lib/dpkg/info/bandit7.password
+
+Password: Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+
+Tips:
+- Use 'ls' to list files
+- Use 'cat filename' to read files
+        </pre>
+
+        <p><a href="../bandit_writeup.html">Back to Terminal</a></p>
+    </div>
+</body>
+</html>
