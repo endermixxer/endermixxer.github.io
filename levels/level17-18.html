@@ -11,18 +11,29 @@
         <h1>Bandit Level 0</h1>
 
         <pre>
+Command List: cat, grep, ls, diff
 Goal: There are 2 files in the homedirectory: passwords.old and passwords.new. The password for the next level is in passwords.new and is the only line that has been changed between passwords.old and passwords.new
 
 Steps:
 1. Open terminal and run:
+   ssh -i sshkey17.private bandit17@bandit.labs.overthewire.org -p 2220
    ssh bandit17@bandit.labs.overthewire.org -p 2220
-2. Enter the password: bandit0
-3. Navigate the home directory
-4. Find and read the file "readme" for the solution
+2. Password for the level are in ./etc/bandit_pass/bandit17: pWXMAZoxGC8JmDMfmT5MGEsobMM3vnj2
+3. diff passwords.old password.new 
 
+
+Passwords: OQxXZjELndr90zuhOTDYBEomI0SZITXI
 Tips:
 - Use 'ls' to list files
 - Use 'cat filename' to read files
+
+Output looks like
+42c42
+< icUh23IUytZLIYhcCaXL18agiSIqymBc
+---
+> OQxXZjELndr90zuhOTDYBEomI0SZITXI
+
+this shows that the original password (first password) changed to the actual password (second password)
         </pre>
 
         <p><a href="../index.html">Back to Terminal</a></p>

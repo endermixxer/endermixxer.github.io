@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandit Level 0 Writeup</title>
+    <title>Bandit Level 20 Writeup</title>
     <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
 </head>
 <body>
     <div id="writeup-container">
-        <h1>Bandit Level 0</h1>
+        <h1>Bandit Level 20</h1>
 
         <pre>
 Goal: There is a setuid binary in the homedirectory that does the following: it makes a connection to localhost on the port you specify as a commandline argument. It then reads a line of text from the connection and compares it to the password in the previous level (bandit20). If the password is correct, it will transmit the password for the next level (bandit21).
@@ -16,15 +16,28 @@ Goal: There is a setuid binary in the homedirectory that does the following: it 
 Steps:
 1. Open terminal and run:
    ssh bandit20@bandit.labs.overthewire.org -p 2220
-2. Enter the password: bandit0
-3. Navigate the home directory
-4. Find and read the file "readme" for the solution
+2. Enter the password: 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+3. ls \\ suconnect
+4. ./suconnect \\ this is how we got the output underneath, cat suconnect and ./suconnect
+5. echo -n "4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA" | nc -l -p 1234 & \\ -n in the echo command prevents newline characters, -l sets a temp  listening port on port 1234, the & makes the command run in the background
 
+Password: bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY
 Tips:
 - Use 'ls' to list files
 - Use 'cat filename' to read files
-        </pre>
 
+Output
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.^@ERROR: Invalid portnumber^@localhost^>
+^@Could not connect
+^@ERROR: Can't read from socket^@Read: %s
+/home/bandit21/.prevpass
+Password matches, sending next password
+/etc/bandit_pass/bandit21
+@ERROR: This doesn't match the current password!
+FAIL!
+Usage: ./suconnect <portnumber>
+This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back. \\ every port is using tcp
+We know that the ./suconnect program is wanting us to send the password for level 20 to a port and will then return the correct password.
         <p><a href="../index.html">Back to Terminal</a></p>
     </div>
 </body>

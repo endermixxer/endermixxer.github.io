@@ -16,13 +16,23 @@ Goal: The password for the next level is stored in a file readme in the homedire
 Steps:
 1. Open terminal and run:
    ssh bandit18@bandit.labs.overthewire.org -p 2220
-2. Enter the password: bandit0
-3. Navigate the home directory
-4. Find and read the file "readme" for the solution
+2. Enter the password: OQxXZjELndr90zuhOTDYBEomI0SZITXI
+3. ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+
+Password: KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI
 
 Tips:
 - Use 'ls' to list files
 - Use 'cat filename' to read files
+
+Notes:
+As soon as the password is put in, you are immediately logged out with a message saying
+"Byebye !
+Connection to bandit.labs.overthewire.org closed."
+
+So my first try was using the scp command, I could send the readme file straight to myself without needing to be actually signed in, which works, but theres another way so we'll focus on that. If you want to do this way it will be written below
+
+scp -P 2220 bandit18@bandit.labs.overthewire.org:readme "$env:USERPROFILE\Downloads"
         </pre>
 
         <p><a href="../index.html">Back to Terminal</a></p>

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandit Level 0 Writeup</title>
+    <title>Bandit Level 21 Writeup</title>
     <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
 </head>
 <body>
     <div id="writeup-container">
-        <h1>Bandit Level 0</h1>
+        <h1>Bandit Level 21</h1>
 
         <pre>
 Goal: A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
@@ -16,13 +16,50 @@ Goal: A program is running automatically at regular intervals from cron, the tim
 Steps:
 1. Open terminal and run:
    ssh bandit21@bandit.labs.overthewire.org -p 2220
-2. Enter the password: bandit0
-3. Navigate the home directory
-4. Find and read the file "readme" for the solution
+2. Enter the password: bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY
+3. ls -la /etc/cron.d/  \\fring cronjob_bandit22
+4. cat /etc/cron.d/cronjob_bandit22
+5. cat /usr/bin/cronjob_bandit22.sh
+6. cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 
+
+Password: RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz
 Tips:
 - Use 'ls' to list files
 - Use 'cat filename' to read files
+
+Explanaton:
+As recommended the output of reading the file in /etc/cron.d/ \\ called cronjob_bandit22 
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+
+A cronjob is a schedular that works like this
+*    *    *    *    *   /home/user/bin/somecommand.sh
+|    |    |    |    |            |
+|    |    |    |    |    Command or Script to execute
+|    |    |    |    |
+|    |    |    | Day of week(0-6 | Sun-Sat)
+|    |    |    |
+|    |    |  Month(1-12)
+|    |    |
+|    |  Day of Month(1-31)
+|    |
+|   Hour(0-23)
+|
+Min(0-59)
+So * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null 
+A * means that it will run at every interval mentioned, so this script runs every minute, of every hour, of every day, of every month. 
+
+Now the job is running a script called /usr/bin/cronjob_bandit22.sh \\ reading it shows
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+chmod 644 sets file permission so that the owner can read and write the file while the group and all others can only read it
+
+so every minute, cronjob_bandit22 will run a command that sets the perms for /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv to be readable by all others, then sends the output of /etc/bandit_pass/bandit22 to /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv 
+so what does this mean, well we can just run cat on /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv and get the password
+
         </pre>
 
         <p><a href="../index.html">Back to Terminal</a></p>

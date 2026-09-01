@@ -11,15 +11,21 @@
         <h1>Bandit Level 0</h1>
 
         <pre>
+Command List: ssh, telnet, nc, openssl s_client, nmap
 Goal: The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
 
 Steps:
 1. Open terminal and run:
+   ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220 \\ no password needed
    ssh bandit14@bandit.labs.overthewire.org -p 2220
-2. Enter the password: bandit0
-3. Navigate the home directory
-4. Find and read the file "readme" for the solution
+2. Password: aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+3. find -user bandit14 | grep "pass"
+4. cat ./etc/bandit_pass/bandit14
+5. aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+6. nmap localhost \\ check if port 30000 really exists
+7. echo "aaWecNkG4FhxJQxz07uiwzVP6bJiYS65" | nc localhost 30000
 
+Password: pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
 Tips:
 - Use 'ls' to list files
 - Use 'cat filename' to read files

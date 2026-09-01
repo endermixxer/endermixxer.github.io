@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bandit Level 0 Writeup</title>
+    <title>Bandit Level 22 Writeup</title>
     <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
 </head>
 <body>
     <div id="writeup-container">
-        <h1>Bandit Level 0</h1>
+        <h1>Bandit Level 22</h1>
 
         <pre>
 Goal: A program is running automatically at regular intervals from cron, the time-based job scheduler. Look in /etc/cron.d/ for the configuration and see what command is being executed.
@@ -16,13 +16,64 @@ Goal: A program is running automatically at regular intervals from cron, the tim
 Steps:
 1. Open terminal and run:
    ssh bandit22@bandit.labs.overthewire.org -p 2220
-2. Enter the password: bandit0
-3. Navigate the home directory
-4. Find and read the file "readme" for the solution
+2. Enter the password: RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz
+3. cat /etc/cron.d/cronjob_bandit23
+4. cat /usr/bin/cronjob_bandit23.sh
+5. myname=bandit23
+6. mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+7. echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+8. cat /etc/bandit_pass/$myname > /tmp/$mytarget
 
+
+Password: gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw
 Tips:
 - Use 'ls' to list files
 - Use 'cat filename' to read files
+
+Explanation:
+as in the last level we first read the /etc/cron.d/cronjob_bandit23
+the output we get is
+		@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+		* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+
+again there its a program that runs every minute of every day, and so forth and it starts a script called /usr/bin/cronjob_bandit23.sh
+reading this we get
+			#!/bin/bash
+
+			myname=$(whoami)
+			mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+			echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+			cat /etc/bandit_pass/$myname > /tmp/$mytarget
+
+So lets go through this script line by line
+
+	#!/bin/bash \\ this line is called a shebang /bin/bash is the traditional location of bash, so it basically just says that the file should run from that file instead of any random file(I think it's a little confusing"
+	myname=$(whoami) \\ sets a variable called my name, and then runs whami
+	mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1) \\ echoes I am user (then runs the whoami command and uses that, then pipes to md5sum which calculates and verifies 128-bit MD5 hashes. Then cut -d ' ' -f 1
+\\	this is a long one so this will be two or three lines. cut (in the man pages) Prints specified byte or field columns from each line of stdin or the input files, -d is to specify the delimeter character that seperates fields in 
+\\ the input source. Defaults to Tab. -f filter field columns from the input source the num specifies which sequence to run. ' ' basically just tells the cut command to use space instead of TAB
+	echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget" \\ writes "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget" that's about it, it doesn't send this anywhere it just says it in the terminal if \\ you run it standalone
+	
+	cat /etc/bandit_pass/$myname > /tmp/$mytarget \\ reads the bandit password on what the whoami cmd output, that sends that to a /tmp file under the mytarget command
+
+so if I where to run the command, what would happen is it would run whoami (at the moment it will read bandit22) then say Copying passwordfile /etc/bandit_pass/bandit22 to /tmp/8169b67bd894ddbb4412f91573b38db3
+and if I run the script, and cat into the /tmp file, I get the password for bandit22
+somehow I have to make the myname command somehow read bandit23 instead of the whoami command
+
+The first thing I did was run whoami, got back bandit22 \\ expectec
+then I realized that I didn't have to run the script, I could just individually run each line.
+myname = $(bandit23) \\ should run myname as bandit23
+$myname bandit23: command not found
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget" \\ after running this I get a new /tmp file
+echo "Copying passwordfile /etc/bandit_pass/bandit23 to /tmp/8ca319486bfbbc3663ea0fbe81326349"
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw
+
+
+
         </pre>
 
         <p><a href="../index.html">Back to Terminal</a></p>
