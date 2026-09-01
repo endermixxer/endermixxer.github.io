@@ -25,6 +25,8 @@ const VALID_COMMANDS = {
     "ssh bandit20@bandit.labs.overthewire.org -p 2220": "levels/level20-21.html",
     "ssh bandit21@bandit.labs.overthewire.org -p 2220": "levels/level21-22.html",
     "ssh bandit22@bandit.labs.overthewire.org -p 2220": "levels/level22-23.html",
+    "ssh bandit23@bandit.labs.overthewire.org -p 2220": "levels/level23-24.html",
+    "ssh bandit24@bandit.labs.overthewire.org -p 2220": "levels/level24-25.html",
     
 };
 
